@@ -2,7 +2,69 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'your_intro_screen_file.dart'; // Replace with actual filename
 
-void main() => runApp(const NavigationBarApp());
+void main() => runApp(const MaterialApp(
+  debugShowCheckedModeBanner: false,
+  home: TitleScreen(), // 👈 Starts here
+));
+
+
+class TitleScreen extends StatelessWidget {
+  const TitleScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // ✅ LSU Logo Image
+              Image.asset(
+                'assets/images/lsu_logo.png',
+                width: 200, // You can adjust size as needed
+              ),
+
+              const SizedBox(height: 30),
+
+              const Text(
+                'L-S-YOU FIND IT',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF461D7C),
+                  letterSpacing: 4,
+                ),
+                textAlign: TextAlign.center,
+              ),
+
+              const SizedBox(height: 40),
+
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const NavigationBarApp()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF461D7C),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 32, vertical: 16),
+                ),
+                child: const Text('Enter'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class NavigationBarApp extends StatelessWidget {
   const NavigationBarApp({super.key});

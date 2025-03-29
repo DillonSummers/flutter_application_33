@@ -60,6 +60,7 @@ flutter:
 
   assets:
     - assets/images/pft_map.png
+    - assets/images/lsu_logo.png   # 👈 Add this line
 
   # To add assets to your application, add an assets section, like this:
   # assets:
