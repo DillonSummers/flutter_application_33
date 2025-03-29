@@ -28,13 +28,26 @@ class _NavigationExampleState extends State<NavigationExample> {
 
   // Screens for navigation
   static final List<Widget> _pages = <Widget>[
-    const IntroScreen(), // Home now shows the scavenger hunt intro screen
-    const Center(
-      child: Text(
-        'Map',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+  const IntroScreen(), // Home
+
+  // ✅ Updated Map page with the image
+  Scaffold(
+    appBar: AppBar(
+      title: const Text('PFT Map'),
+      centerTitle: true,
+    ),
+    body: Center(
+      child: InteractiveViewer(
+        panEnabled: true,
+        minScale: 0.5,
+        maxScale: 4.0,
+        child: Image.asset(
+          'assets/images/pft_map.png',
+          fit: BoxFit.contain,
+        ),
       ),
     ),
+  ),
     Scaffold(
   appBar: AppBar(
     title: const Text('Details'),
@@ -379,12 +392,34 @@ class CongratsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("You Did It!")),
-      body: const Center(
-        child: Text(
-          "🎉 Congratulations! You completed the LSU Scavenger Hunt! 🎉",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
+      appBar: AppBar(
+        title: const Text("You Did It!"),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "🎉 Congratulations! You completed the LSU Scavenger Hunt! 🎉",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 30),
+
+            // ✅ Add this Return button
+            ElevatedButton(
+              onPressed: () {
+                Navigator.popUntil(context, (route) => route.isFirst);
+              },
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                backgroundColor: const Color(0xFF461D7C), // LSU Purple
+                foregroundColor: Colors.white,
+              ),
+              child: const Text("Return to Home"),
+            ),
+          ],
         ),
       ),
     );
