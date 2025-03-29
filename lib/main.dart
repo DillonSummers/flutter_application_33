@@ -1,8 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'your_intro_screen_file.dart'; // Replace with actual filename
 
-void main() {
-  runApp(const MyApp());
+void main() => runApp(const NavigationBarApp());
+
+class NavigationBarApp extends StatelessWidget {
+  const NavigationBarApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: NavigationExample(),
+    );
+  }
+}
+
+class NavigationExample extends StatefulWidget {
+  const NavigationExample({super.key});
+
+  @override
+  State<NavigationExample> createState() => _NavigationExampleState();
+}
+
+class _NavigationExampleState extends State<NavigationExample> {
+  int currentPageIndex = 0;
+
+  // Screens for navigation
+  static final List<Widget> _pages = <Widget>[
+    const IntroScreen(), // Home now shows the scavenger hunt intro screen
+    const Center(
+      child: Text(
+        'Map',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+    ),
+    const Center(
+      child: Text(
+        'Details',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _pages[currentPageIndex],
+      bottomNavigationBar: NavigationBar(
+      selectedIndex: currentPageIndex,
+      onDestinationSelected: (int index) {
+        setState(() {
+         currentPageIndex = index;
+        });
+      },
+        destinations: const <NavigationDestination>[
+          NavigationDestination(
+            icon: Icon(Icons.house_outlined),
+            selectedIcon: Icon(Icons.house),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.map_outlined),
+            selectedIcon: Icon(Icons.map),
+            label: 'Map',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.info_outline),
+            selectedIcon: Icon(Icons.info),
+            label: 'Details',
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -66,7 +137,10 @@ class IntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Get Ready!')),
+      appBar: AppBar(
+        title: const Text('LSU Patrick F. Taylor Scavenger Hunt'),
+        centerTitle: true, // 👈 Centers the title
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -81,7 +155,9 @@ class IntroScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const QuizScreen(questionIndex: 0)),
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const QuizScreen(questionIndex: 0)),
                 );
               },
               child: const Text("Play"),
@@ -102,25 +178,51 @@ const List<Map<String, dynamic>> quizQuestions = [
   },
   {
     "question": "What is the first option listed on the Panera Bread sandwich menu in the PFT?",
-    "options": ["Grilled Chicken Sandwich with Avocado", "Turkey Club", "BLT", "Roast Beef Sandwich"],
+    "options": ["Turkey Club", "Roast Beef Sandwich", "BLT", "Grilled Chicken Sandwich with Avocado"],
     "correct": "Grilled Chicken Sandwich with Avocado"
   },
   {
     "question": "What is the room number for the Roy Marrin Auditorium?",
-    "options": ["1100", "1200", "2100", "3100"],
+    "options": ["2100", "1200", "3100", "1100"],
     "correct": "1100"
   },
   {
     "question": "What does it say on the left door of the Chevron center?",
-    "options": ["Geaux Communicate", "Welcome Engineers", "Innovation Hub", "Future Tigers"],
+    "options": ["Geaux Communicate", "Future Tigers", "Welcome Engineers", "Innovation Hub"],
     "correct": "Geaux Communicate"
   },
   {
     "question": "What is inside room 2215?",
     "options": ["A crash test car", "A robotics lab", "A computer lab", "An engineering workshop"],
     "correct": "A crash test car"
+  },
+  {
+    "question": "How many computers are in room 2241?",
+    "options": ["50", "51", "48", "49"],
+    "correct": "51"
+  },
+  {
+    "question": "What floor is the suite for the college of engineering and computer science?",
+    "options": ["2nd floor", "3rd floor", "1st floor", "4th floor"],
+    "correct": "3rd floor"
+  },
+  {
+    "question": "Where is the Dr. William A. Brookshire Student Service Office?",
+    "options": ["In front of the big stairs", "behind the big stairs", "next to the entrance", "on the roof"],
+    "correct": "In front of the big stairs"
+  },
+  {
+    "question": "Which zone has the Dean’s suite of the PFT?",
+    "options": ["Zone 1100", "Zone 1400", "Zone 1200", "Zone 1300"],
+    "correct": "Zone 1200"
+  },
+  {
+    "question": "What year does the TAU BETA PI statue say it was made?",
+    "options": ["1942", "2025", "1936", "1956"],
+    "correct": "1936"
   }
 ];
+
 
 // Quiz Screen
 class QuizScreen extends StatelessWidget {
