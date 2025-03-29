@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'LSU Scavenger Hunt',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 95, 19, 153)),
         useMaterial3: true,
       ),
       home: const WelcomeScreen(),
@@ -34,7 +35,11 @@ class WelcomeScreen extends StatelessWidget {
           children: [
             const Text(
               "Welcome to the LSU Scavenger Hunt",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Roboto', // Or use GoogleFonts.roboto() if using the package
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
