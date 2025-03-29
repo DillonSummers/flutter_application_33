@@ -35,12 +35,57 @@ class _NavigationExampleState extends State<NavigationExample> {
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
     ),
-    const Center(
-      child: Text(
-        'Details',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+    Scaffold(
+  appBar: AppBar(
+    title: const Text('Details'),
+    centerTitle: true,
+  ),
+  body: Padding(
+    padding: const EdgeInsets.all(20.0),
+    child: SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Text(
+            'About Patrick F. Taylor Hall',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 12),
+          Text(
+            'Patrick F. Taylor Hall (PFT) is one of the largest freestanding academic buildings in the U.S. and serves as the central hub for LSU’s College of Engineering. It houses classrooms, labs, computer centers, and collaboration spaces where innovation and learning thrive.',
+            style: TextStyle(fontSize: 16),
+            textAlign: TextAlign.justify,
+          ),
+          SizedBox(height: 24),
+          Text(
+            'About This App',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 12),
+          Text(
+            'This app is your interactive companion for a self-guided scavenger hunt through PFT. It helps you explore key areas of the building while answering fun and challenging questions related to what you see.',
+            style: TextStyle(fontSize: 16),
+            textAlign: TextAlign.justify,
+          ),
+          SizedBox(height: 24),
+          Text(
+            'How the Scavenger Hunt Works',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 12),
+          Text(
+            'Each stop presents a question based on something you can observe around you in PFT—like signs, labs, or displays. Answer correctly to move on to the next challenge. At the end, you’ll receive a congratulations message for completing the hunt!',
+            style: TextStyle(fontSize: 16),
+            textAlign: TextAlign.justify,
+          ),
+        ],
       ),
     ),
+  ),
+)
   ];
 
   @override
