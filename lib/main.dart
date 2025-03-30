@@ -94,27 +94,69 @@ class _NavigationExampleState extends State<NavigationExample> {
 
   // ✅ Updated Map page with the image
   Scaffold(
-    appBar: AppBar(
-      title: const Text('PFT Map'),
-      centerTitle: true,
-    ),
-    body: Center(
-      child: InteractiveViewer(
-        panEnabled: true,
-        minScale: 0.5,
-        maxScale: 4.0,
-        child: Image.asset(
-          'assets/images/pft_map.png',
-          fit: BoxFit.contain,
-        ),
-      ),
-    ),
-  ),
-    Scaffold(
   appBar: AppBar(
-    title: const Text('Details'),
+    title: const Text("PFT Floor Plan"),
     centerTitle: true,
+    backgroundColor: const Color(0xFF461D7C), // LSU purple
+    foregroundColor: Colors.white,
   ),
+  body: Padding(
+    padding: const EdgeInsets.all(24.0),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.picture_as_pdf,
+          size: 80,
+          color: Color(0xFF461D7C),
+        ),
+        const SizedBox(height: 20),
+        const Text(
+          "Need to find your way around PFT?",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 10),
+        const Text(
+          "Tap the button below to open the full floor plan for Patrick F. Taylor Hall on LSU's official website.",
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 16),
+        ),
+        const SizedBox(height: 30),
+        ElevatedButton.icon(
+          icon: const Icon(Icons.open_in_new),
+          label: const Text("Open PFT Floor Plan"),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF461D7C),
+            foregroundColor: Colors.white,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          ),
+          onPressed: () async {
+            final url = Uri.parse("https://www.lsu.edu/eng/images/pft_floorplan_guide2_webupdated2021.pdf");
+            if (await canLaunchUrl(url)) {
+              await launchUrl(url, mode: LaunchMode.externalApplication);
+            } else {
+              // ignore: use_build_context_synchronously
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Could not open the PDF.')),
+              );
+            }
+          },
+        ),
+      ],
+    ),
+  ),
+),
+  Scaffold(
+  appBar: AppBar(
+  title: const Text('PFT Floor Plan'),
+  centerTitle: true,
+  backgroundColor: const Color(0xFF461D7C), // LSU Purple
+  foregroundColor: Colors.white,
+),
   body: Padding(
     padding: const EdgeInsets.all(20.0),
     child: SingleChildScrollView(
@@ -160,8 +202,10 @@ class _NavigationExampleState extends State<NavigationExample> {
       ),
     ),
   ),
-)
+  ),
   ];
+  
+  static get appBar => null;
 
   @override
   Widget build(BuildContext context) {
@@ -194,6 +238,14 @@ class _NavigationExampleState extends State<NavigationExample> {
       ),
     );
   }
+  
+  static canLaunchUrl(Uri url) {}
+  
+  static launchUrl(Uri url, {required mode}) {}
+}
+
+class LaunchMode {
+  static var externalApplication;
 }
 
 class MyApp extends StatelessWidget {
