@@ -14,7 +14,7 @@ class TitleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFF461D7C), // LSU Purple
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -22,11 +22,7 @@ class TitleScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // ✅ LSU Logo Image
-              Image.asset(
-                'assets/images/lsu_logo.png',
-                width: 200, // You can adjust size as needed
-              ),
-
+              
               const SizedBox(height: 30),
 
               const Text(
@@ -34,7 +30,7 @@ class TitleScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF461D7C),
+                  color: Color(0xFFFFB81C), // LSU Gold
                   letterSpacing: 4,
                 ),
                 textAlign: TextAlign.center,
@@ -51,8 +47,8 @@ class TitleScreen extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF461D7C),
-                  foregroundColor: Colors.white,
+                  backgroundColor: const Color(0xFFFFB81C), // LSU Gold
+                  foregroundColor: Colors.black,
                   padding: const EdgeInsets.symmetric(
                       horizontal: 32, vertical: 16),
                 ),
@@ -98,7 +94,7 @@ class _NavigationExampleState extends State<NavigationExample> {
     title: const Text("PFT Floor Plan"),
     centerTitle: true,
     backgroundColor: const Color(0xFF461D7C), // LSU purple
-    foregroundColor: Colors.white,
+    foregroundColor: const Color(0xFFFFB81C), // LSU gold
   ),
   body: Padding(
     padding: const EdgeInsets.all(24.0),
@@ -131,7 +127,7 @@ class _NavigationExampleState extends State<NavigationExample> {
           label: const Text("Open PFT Floor Plan"),
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF461D7C),
-            foregroundColor: Colors.white,
+            foregroundColor: const Color(0xFFFFB81C),
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           ),
           onPressed: () async {
@@ -140,9 +136,7 @@ class _NavigationExampleState extends State<NavigationExample> {
               await launchUrl(url, mode: LaunchMode.externalApplication);
             } else {
               // ignore: use_build_context_synchronously
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Could not open the PDF.')),
-              );
+
             }
           },
         ),
@@ -151,12 +145,13 @@ class _NavigationExampleState extends State<NavigationExample> {
   ),
 ),
   Scaffold(
+  backgroundColor: const Color(0xFFFDD023), // LSU Gold
   appBar: AppBar(
-  title: const Text('PFT Floor Plan'),
-  centerTitle: true,
-  backgroundColor: const Color(0xFF461D7C), // LSU Purple
-  foregroundColor: Colors.white,
-),
+    title: const Text('Description'),
+    centerTitle: true,
+    backgroundColor: const Color(0xFF461D7C), // LSU Purple
+    foregroundColor: const Color(0xFFFDD023), // LSU Gold text
+  ),
   body: Padding(
     padding: const EdgeInsets.all(20.0),
     child: SingleChildScrollView(
@@ -165,45 +160,67 @@ class _NavigationExampleState extends State<NavigationExample> {
         children: const [
           Text(
             'About Patrick F. Taylor Hall',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF461D7C), // LSU Purple
+            ),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 12),
           Text(
             'Patrick F. Taylor Hall (PFT) is one of the largest freestanding academic buildings in the U.S. and serves as the central hub for LSU’s College of Engineering. It houses classrooms, labs, computer centers, and collaboration spaces where innovation and learning thrive.',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+              fontSize: 16,
+              color: Color(0xFF461D7C),
+            ),
             textAlign: TextAlign.justify,
           ),
           SizedBox(height: 24),
           Text(
             'About This App',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF461D7C),
+            ),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 12),
           Text(
             'This app is your interactive companion for a self-guided scavenger hunt through PFT. It helps you explore key areas of the building while answering fun and challenging questions related to what you see.',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+              fontSize: 16,
+              color: Color(0xFF461D7C),
+            ),
             textAlign: TextAlign.justify,
           ),
           SizedBox(height: 24),
           Text(
             'How the Scavenger Hunt Works',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF461D7C),
+            ),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 12),
           Text(
             'Each stop presents a question based on something you can observe around you in PFT—like signs, labs, or displays. Answer correctly to move on to the next challenge. At the end, you’ll receive a congratulations message for completing the hunt!',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+              fontSize: 16,
+              color: Color(0xFF461D7C),
+            ),
             textAlign: TextAlign.justify,
           ),
         ],
       ),
     ),
   ),
-  ),
+)
   ];
+
   
   static get appBar => null;
 
@@ -256,7 +273,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'LSU Scavenger Hunt',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 95, 19, 153)),
+        colorScheme: ColorScheme.fromSeed(seedColor:const Color(0xFFFFB81C)),
         useMaterial3: true,
       ),
       home: const WelcomeScreen(),
@@ -302,6 +319,8 @@ class WelcomeScreen extends StatelessWidget {
   }
 }
 
+
+
 // Intro Screen
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});
@@ -309,9 +328,12 @@ class IntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFDD023), // LSU Gold background
       appBar: AppBar(
         title: const Text('LSU Patrick F. Taylor Scavenger Hunt'),
-        centerTitle: true, // 👈 Centers the title
+        centerTitle: true,
+        backgroundColor: const Color(0xFF461D7C), // LSU Purple app bar
+        foregroundColor: Colors.white, // White text/icons
       ),
       body: Center(
         child: Column(
@@ -319,7 +341,11 @@ class IntroScreen extends StatelessWidget {
           children: [
             const Text(
               "Time to see how well you know the PFT!",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF461D7C), // LSU Purple text
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
@@ -328,10 +354,15 @@ class IntroScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>
-                          const QuizScreen(questionIndex: 0)),
+                    builder: (context) => const QuizScreen(questionIndex: 0),
+                  ),
                 );
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF461D7C), // LSU Purple
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              ),
               child: const Text("Play"),
             ),
           ],
@@ -419,7 +450,12 @@ class QuizScreen extends StatelessWidget {
     final questionData = quizQuestions[questionIndex];
 
     return Scaffold(
-      appBar: AppBar(title: Text('Question ${questionIndex + 1}')),
+      backgroundColor: const Color(0xFFFDD023), // LSU Gold
+      appBar: AppBar(
+        title: Text('Question ${questionIndex + 1}'),
+        backgroundColor: const Color(0xFF461D7C), // LSU Purple
+        foregroundColor: Colors.white, // White text
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -428,7 +464,10 @@ class QuizScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 questionData["question"],
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF461D7C)), // LSU Purple
                 textAlign: TextAlign.center,
               ),
             ),
@@ -437,8 +476,15 @@ class QuizScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 5.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    _navigateToResult(context, option == questionData["correct"]);
+                    _navigateToResult(
+                        context, option == questionData["correct"]);
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF461D7C),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
+                  ),
                   child: Text(option),
                 ),
               ),
@@ -459,14 +505,26 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(isCorrect ? "Hurray!" : "Oops, Try Again!")),
+      backgroundColor: const Color(0xFFFDD023), // LSU Gold
+      appBar: AppBar(
+        title: Text(isCorrect ? "Hurray!" : "Oops, Try Again!"),
+        centerTitle: true,
+        backgroundColor: const Color(0xFF461D7C), // LSU Purple
+        foregroundColor: Colors.white,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              isCorrect ? "🎉 Hurray! You got it right! 🎉" : "❌ Oops, try again! ❌",
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              isCorrect
+                  ? "🎉 Hurray! You got it right! 🎉"
+                  : "❌ Oops, try again! ❌",
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF461D7C), // LSU Purple
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
@@ -477,19 +535,30 @@ class ResultScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => QuizScreen(questionIndex: questionIndex + 1),
+                        builder: (context) =>
+                            QuizScreen(questionIndex: questionIndex + 1),
                       ),
                     );
                   } else {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const CongratsScreen()),
+                      MaterialPageRoute(
+                        builder: (context) => const CongratsScreen(),
+                      ),
                     );
                   }
                 } else {
                   Navigator.pop(context);
                 }
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF461D7C), // LSU Purple
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
+              ),
               child: Text(isCorrect ? "Next" : "Back"),
             ),
           ],
@@ -499,6 +568,7 @@ class ResultScreen extends StatelessWidget {
   }
 }
 
+
 // Congratulations Screen
 class CongratsScreen extends StatelessWidget {
   const CongratsScreen({super.key});
@@ -506,9 +576,12 @@ class CongratsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFDD023), // LSU Gold
       appBar: AppBar(
         title: const Text("You Did It!"),
         centerTitle: true,
+        backgroundColor: const Color(0xFF461D7C), // LSU Purple
+        foregroundColor: Colors.white,
       ),
       body: Center(
         child: Column(
@@ -516,12 +589,15 @@ class CongratsScreen extends StatelessWidget {
           children: [
             const Text(
               "🎉 Congratulations! You completed the LSU Scavenger Hunt! 🎉",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF461D7C), // LSU Purple text
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
 
-            // ✅ Add this Return button
             ElevatedButton(
               onPressed: () {
                 Navigator.popUntil(context, (route) => route.isFirst);
